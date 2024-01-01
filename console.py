@@ -139,7 +139,9 @@ class HBNBCommand(cmd.Cmd):
             
             # check the value type:
             if value[0] == '"': # it is a string
+                value = value.strip("\"")
                 value = value.replace("_", " ")
+                value = value.replace("\\\"", "\"")
 
             elif '.' in value: # it is a flout
                 try:
@@ -158,7 +160,6 @@ class HBNBCommand(cmd.Cmd):
 
         storage.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
