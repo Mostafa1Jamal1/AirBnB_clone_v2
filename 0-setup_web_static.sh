@@ -36,7 +36,7 @@ sudo chown -R ubuntu: /data/
 # of /data/web_static/current/ to hbnb_static
 serve_string="\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n\n"
 
-if ! grep -q "$serve_string" "/etc/nginx/sites-enabled/*default";then
+if ! grep -q "$serve_string" /etc/nginx/sites-enabled/*default;then
 	sed -i "\@^\s*location / {@s@^@$serve_string@" /etc/nginx/sites-enabled/*default
 fi
 
