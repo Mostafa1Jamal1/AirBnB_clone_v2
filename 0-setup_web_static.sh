@@ -37,7 +37,7 @@ sudo chown -R ubuntu: /data/
 serve_string="\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n\n"
 
 if ! grep -q "$serve_string" "/etc/nginx/sites-available/default";then
-	sed -i "\@^\s*location / {@s@^@$redirect_string@" /etc/nginx/sites-available/default
+	sed -i "\@^\s*location / {@s@^@$serve_string@" /etc/nginx/sites-available/default
 fi
 
 #  restart Nginx
