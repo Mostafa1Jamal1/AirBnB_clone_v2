@@ -29,7 +29,7 @@ def cisfun(text):
 @app.route('/python/<text>', strict_slashes=False)
 def pythoniscool(text="is cool"):
     ''' display “Python ” followed by the value of the text
-    and replace _ with space on route /c/<text> '''
+    and replace _ with space on route /python/<text> '''
     return f"Python {text.replace('_', ' ')}"
 
 
