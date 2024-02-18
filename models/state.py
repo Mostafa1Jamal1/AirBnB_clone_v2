@@ -13,7 +13,8 @@ class State(BaseModel, Base):
 
     # HBNB_TYPE_STORAGE can be “file” (FileStorage) or db (DBStorage)
     if getenv('HBNB_TYPE_STORAGE') == 'db':
-        cities = relationship('City', back_populates="state")
+        cities = relationship('City',backref=backref(
+            "state", cascade="all, delete-orphan"))
     else:
         @property
         def cities(self):
@@ -22,8 +23,8 @@ class State(BaseModel, Base):
             equals to the current State.id'''
             from models import storage
             from models.city import City
-            city_list = {}
-            for key, city in storage.all(City).items():
+            city_list = []
+            for city in list(storage.all(City).values()):
                 if self.id == city.state_id:
-                    city_list[key] = city
+                    city_list.append(city)
             return city_list
