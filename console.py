@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
 
             # assign the value to the key_name in the new_instance
             setattr(new_instance, key_name, value)
-
+        storage.new(new_instance)
         storage.save()
         print(new_instance.id)
 
